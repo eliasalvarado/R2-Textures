@@ -2,17 +2,21 @@ from gl import Renderer
 import shaders
 
 
-width = 1000
-height = 500
+width = 2048
+height = 2048
 
 rend = Renderer(width, height)
 rend.vertexShader = shaders.vertexShader
 rend.fragmentShader = shaders.fragmentShader
 
-rend.glLoadModel(filename = "model.obj", texName = "model.bmp", translate=(250, 250, 0), rotate=(0, 2, 0), scale=(300, 300, 300))
-rend.glLoadModel(filename = "model.obj", texName = "model.bmp", translate=(750, 250, 0), rotate=(0, 3, 0), scale=(300, 300, 300))
+scaleDim = 30
+
+rend.glLoadModel(filename = "cap.obj", texName = "captex.bmp", translate=(512, 512, 0), rotate=(-1.5, 0, -1.5), scale=(scaleDim, scaleDim, scaleDim))
+rend.glLoadModel(filename = "cap.obj", texName = "captex.bmp", translate=(1536, 512, 0), rotate=(-2, 0, 0), scale=(scaleDim, scaleDim, scaleDim))
+rend.glLoadModel(filename = "cap.obj", texName = "captex.bmp", translate=(512, 1536, 0), rotate=(-1.5, 0, 0.5), scale=(scaleDim, scaleDim, scaleDim))
+rend.glLoadModel(filename = "cap.obj", texName = "captex.bmp", translate=(1536, 1536, 0), rotate=(-1.5, 0, 3.15), scale=(scaleDim, scaleDim, scaleDim))
 
 
 rend.glRender()
 
-rend.glFinish("output1.bmp")
+rend.glFinish("Cap.bmp")

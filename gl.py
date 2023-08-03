@@ -47,7 +47,7 @@ class Renderer(object):
         self.width = width
         self.height = height
 
-        self.glClearColor(0, 0, 0)
+        self.glClearColor(1, 1, 1)
         self.glClear()
 
         self.glColor(1, 1, 1)

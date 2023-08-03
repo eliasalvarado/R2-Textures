@@ -13,6 +13,7 @@ class Obj(object):
         for line in self.lines:
             try:
                 prefix, value = line.split(" ", 1)
+                value = value.lstrip(" ").rstrip(" ")
             except:
                 continue
                 
@@ -23,9 +24,21 @@ class Obj(object):
             elif prefix == "vn":
                 self.normals.append(list(map(float, value.split(" "))))
             elif prefix == "f":
+                #self.faces.append([list(map(int, vert.split("/"))) for vert in value.split(" ")])
+                verts = value.split(" ")
                 try:
-                    self.faces.append([list(map(int, vert.split("/"))) for vert in value.split(" ")])
+                    if (len(verts) == 3):
+                        self.faces.append([list(map(int, vert.split("/"))) for vert in verts])
+                    elif len(verts) == 4:
+                        tri1 = [list(map(int, verts[0].split("/"))),
+                                list(map(int, verts[1].split("/"))),
+                                list(map(int, verts[2].split("/")))]
+                        tri2 = [list(map(int, verts[0].split("/"))),
+                                list(map(int, verts[2].split("/"))),
+                                list(map(int, verts[3].split("/")))]
+                        self.faces.append(tri1)
+                        self.faces.append(tri2)
                 except:
-                    self.faces.append([list(map(lambda x: int(x) if x else 0, vert.split("/"))) for vert in value.split(" ")])
+                    print(verts)
 
     
